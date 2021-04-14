@@ -4,6 +4,8 @@ import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
 import SignUp from './SignUp'
 import Login from './Login'
+import Container from '@material-ui/core/Container';
+
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -68,6 +70,7 @@ export default function Authentication() {
   );
 
   return (
+    <Container>
     <div>
       <button type="button" onClick={handleOpen}>
         login
@@ -81,6 +84,7 @@ export default function Authentication() {
         {body}
       </Modal>
     </div>
+    </Container>
   );
 }
 

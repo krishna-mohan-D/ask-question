@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '320px'
   },
   extend: {
-     width: '90%',
+     width: '80%',
      height: '50px',
     //  padding: '30px',
      marginLeft: '400px',
@@ -56,17 +56,18 @@ const useStyles = makeStyles((theme) => ({
 
   },
   root: {
-    //  minWidth: 275,
+     minWidth: 5,
+    //  width: '440px',
      marginTop: '40px',
-     color: 'red',
+    //  color: 'red',
      backgroundColor: 'ghostwhite',
-     marginLeft: '483px',
+    //  marginLeft: '483px',
 
   },
   bullet: {
-    // display: 'inline-block',
-    // margin: '0 2px',
-    // transform: 'scale(0.8)',
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
   },
   title: {
     fontSize: 14,
@@ -81,17 +82,19 @@ export default function SignIn() {
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
-    <Container component="main" maxWidth="30px">
+    <Container component="main" >
+      
         <Card className={classes.root}>
+        <h1>ask a question</h1>
+
           <CardContent>
           
             
             <div className={classes.paper}>
-              
               <form className={classes.form} noValidate>
                     <Grid container >
-                        <Grid sm >
-          
+                        <Grid xs >
+                          
                               <TextField
                                 className={classes.extend}
                                 variant="outlined"
@@ -105,7 +108,7 @@ export default function SignIn() {
                                 size="small"
                               />
                         </Grid>      
-                        <Grid item  sm>
+                        <Grid item  xs>
                 
                               <Button
                               type="submit"
