@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState}from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Slide } from '@material-ui/core';
+import axios from 'axios';
 
 function Copyright() {
   return (
@@ -53,6 +54,35 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
   const classes = useStyles();
+  const url = "localhost:3000/";
+
+  const [data,setData] = useState({
+     email: "",
+     password: ""
+  })
+ 
+  function handle(e){
+      const newData = {...data};
+      newData[e.target.id] = e.target.value;
+      setData(newData);
+      console.log('data',data)
+  }
+  
+  function  submit(e){
+    e.prevent.default();
+
+    axios.post(url, {
+      email: data.email,
+      password: data.password
+    })
+    .then(res => {
+      console.log(res.data)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -64,7 +94,7 @@ export default function Login() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form}  noValidate   onSubmit={(e) => submit(e)}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -75,6 +105,8 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={(e) => handle(e)}
+            value={data.email}
           />
           <TextField
             variant="outlined"
@@ -86,6 +118,8 @@ export default function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={(e) => handle(e)}
+            value={data.password}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

@@ -59,12 +59,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
      minWidth: 5,
     //  width: '440px',
-     marginTop: '40px',
+     marginTop: '20px',
+     paddingBottom: '100px',
     //  color: 'red',
-     backgroundColor: 'ghostwhite',
+    //  backgroundColor: 'ghostwhite',
     //  marginLeft: '483px',
-    paddingTop: '-300px'
-
+    height: '30px'
   },
   bullet: {
     display: 'inline-block',
@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Question() {
+export default function Comment(props) {
   const classes = useStyles();
 
   const bull = <span className={classes.bullet}>•</span>;
@@ -100,6 +100,7 @@ export default function Question() {
   function  submit(e){
      e.prevent.default();
      axios.post(url , {
+       questionId: props.answer.id,
        question: data.question
      })
      .then(res => {
@@ -112,7 +113,7 @@ export default function Question() {
     <Container component="main" >
       
         <Card className={classes.root}>
-            <h1 style={{marginLeft: '500px' ,paddingBottom: '-400px'}}>ask a question</h1>
+        {/* <h1>ask a question</h1> */}
 
           <CardContent>
           
@@ -147,7 +148,7 @@ export default function Question() {
                               color="primary"
                               className={classes.submit}
                               >
-                                post
+                                Comment
                               </Button>
                         </Grid>  
                   </Grid>

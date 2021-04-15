@@ -26,20 +26,23 @@ export default function Navbar() {
   const classes = useStyles();
 
   return (
-    <Container>
     <div className={classes.root}>
       <AppBar position="relative">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
-          </Typography>
-          <Button color="inherit"><Authentication/></Button>
-        </Toolbar>
+        <Container>
+
+          <Toolbar>
+            {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+              <MenuIcon />
+            </IconButton> */}
+            <Typography variant="h4" className={classes.title}>
+              welcome
+            </Typography>
+            <Button color="inherit"><Authentication/></Button>
+          </Toolbar>
+
+        </Container>
+  
       </AppBar>
     </div>
-    </Container>
   );
 }

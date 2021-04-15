@@ -72,7 +72,7 @@ export default function Authentication() {
   return (
     <Container>
     <div>
-      <button type="button" onClick={handleOpen}>
+      <button style={{fontSize: "20px" , padding: '8px'}} variant="h6" type="button" onClick={handleOpen}>
         login
       </button>
       <Modal

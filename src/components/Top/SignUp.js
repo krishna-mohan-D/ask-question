@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState}from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios';
 
 function Copyright() {
   return (
@@ -48,8 +49,39 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const url = "localhost:3000/";
+  const [data, setData] = useState({
+     firstName: "",
+     lastName: "",
+     email: "",
+     password: ""
+  })
+  
+  function handle(e){
+        const newData = {...data};
+        newData[e.target.id]  = e.target.value;
+        setData(newData);
+        console.log(newData);
+  }
 
-  return (
+  function submit(e){
+    e.preventDefault(); 
+    axios.post(url,{
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: data.password
+    })
+    
+    .then(res => {
+      console.log('sucess', res.data)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
+  return  (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -59,7 +91,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={(e)=> submit(e)}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -71,6 +103,8 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                onChange={(e) => handle(e)}
+                value={data.firstName}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -82,6 +116,8 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange={(e) => handle(e)}
+                value={data.lastName}
               />
             </Grid>
             <Grid item xs={12}>
@@ -93,6 +129,8 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={(e) => handle(e)}
+                value={data.email}
               />
             </Grid>
             <Grid item xs={12}>
@@ -105,6 +143,8 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e) => handle(e)}
+                value={data.password}
               />
             </Grid>
             {/* <Grid item xs={12}>
